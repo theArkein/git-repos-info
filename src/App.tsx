@@ -1,6 +1,8 @@
+import IssuesPage from "./components/pages/issues/issues";
+
 function App() {
   return (
-    <div>Hello World</div>
+    <IssuesPage />
   )
 }
 
