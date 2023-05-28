@@ -1,4 +1,4 @@
-import { QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import IssuesPage from "./components/pages/issues/issues";
 import { queryClient } from "./config";
 
