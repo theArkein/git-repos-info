@@ -1,18 +1,18 @@
-import { atomProviderMock, issuesMock } from "../../../../../mocks/data";
+import { issuesAtomMock, issuesMock } from "../../../../../mocks/mock";
 import { render, screen } from "../../../../../utils/test.utils";
 import { DetailsLists } from "../details-list";
 
 describe("IssuesDetailsList", async () => {
+  const options = {
+    atom: [issuesAtomMock],
+  }
+
   it("should render successfully", () => {
-    render(<DetailsLists />, {
-      atom: atomProviderMock,
-    });
-  });
+    render(<DetailsLists />, options );
+  })
 
   it("should render list correctly", () => {
-    render(<DetailsLists />, {
-      atom: atomProviderMock,
-    });
+    render(<DetailsLists />, options);
     expect(screen.getByTestId("list")).toBeInTheDocument();
     expect(screen.getAllByTestId("list-item")).toHaveLength(issuesMock.length);
     expect(screen.getAllByTestId("issue-title")[0]).toHaveTextContent(
