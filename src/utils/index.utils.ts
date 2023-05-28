@@ -1,4 +1,5 @@
 import { urls } from "../config"
+import { fetch } from "cross-fetch"
 
 export const fetchAPI = async (url:string) => {
     const response = await fetch(url)
@@ -9,6 +10,7 @@ export const fetchAPI = async (url:string) => {
 }
 
 export const getIssuesApiEndPoint = (username: string, repo: string, state: string)=>`${urls.githubAPIOrigin}/repos/${username}/${repo}/issues?state=${state}`
+export const getIssuesUrl = (username: string, repo: string)=>`${urls.githubOrigin}/${username}/${repo}`
 
 export const validateGithubUrl = (url:string)=>{
     const result= {isValid: true, error:''}

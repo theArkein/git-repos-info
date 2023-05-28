@@ -2,6 +2,7 @@ import { cleanup, render } from "@testing-library/react";
 import { useHydrateAtoms } from "jotai/utils";
 import { Provider } from "jotai";
 import { afterEach } from "vitest";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 afterEach(() => {
   cleanup();
@@ -33,17 +34,22 @@ const AtomProvider = ({
 const withAllProviders =
   (providerValues: ProviderValues) =>
   ({ children }: { children: JSX.Element }) => {
+    const defaultQueryClient = new QueryClient();
+
     return (
-      <AtomProvider
-        initialValues={providerValues.atom}
+      <QueryClientProvider
+        client={providerValues.queryClient || defaultQueryClient}
       >
-        {children}
-      </AtomProvider>
+        <AtomProvider initialValues={providerValues.atom}>
+          {children}
+        </AtomProvider>
+      </QueryClientProvider>
     );
   };
 
 interface ProviderValues {
   atom?: any;
+  queryClient?: QueryClient;
 }
 
 const customRender = (
