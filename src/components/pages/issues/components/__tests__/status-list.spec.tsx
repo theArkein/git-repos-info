@@ -1,4 +1,4 @@
-import { atomProviderMock, issueMock, issuesMock } from "../../../../../mocks/data";
+import { atomProviderMock, issuesMock } from "../../../../../mocks/data";
 import { render, screen } from "../../../../../utils/test.utils";
 import { StatusList } from "../status-list";
 
