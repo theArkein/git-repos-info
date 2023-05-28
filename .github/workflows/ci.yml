@@ -1,9 +1,9 @@
-name: "Check Build"
+name: "CI""
 
 on: push
 
 jobs:
-  check-build:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
