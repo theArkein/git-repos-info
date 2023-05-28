@@ -31,13 +31,13 @@ export const DetailsLists = ({css}: ListsProps )=>{
 
     const renderItem = (item: IssueType)=>(
         <Item key={item.id}>
-            <h5>{item.title}</h5>
+            <h5 data-testid="issue-title">{item.title}</h5>
             <div>
                 <span>#{item.number}</span>
                 {item.state==="open" && <span> opened on {localFormattedDate(item.created_at)}</span>}
                 <span> by </span>
                 <a target="_blank" href={item.user.html_url}>{item.user.login}</a>
-                {item.state==="closed" && <span> closed on {localFormattedDate(item.closed_at)}</span>}
+                {(item.state==="closed" && item.closed_at) && <span> closed on {localFormattedDate(item.closed_at)}</span>}
 
             </div>
         </Item>

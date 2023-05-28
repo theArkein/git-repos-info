@@ -28,13 +28,13 @@ interface ListProps<T> {
 export const List = <T extends unknown>({items = [], renderItem}: ListProps<T>)=>{
   const listItems = items.map((item, i)=>{
     return (
-        <ListItem key={i}>
+        <ListItem key={i} data-testid="list-item">
             {renderItem(item)}
         </ListItem>)
     })
 
     return (
-        <StyledList >
+        <StyledList data-testid="list">
             {listItems}
         </StyledList>
     )
