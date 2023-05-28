@@ -1,7 +1,6 @@
 import { IssuesPage } from "..";
 import { urls } from "../../../config";
 import {
-    closedIssueMock,
   issuesAtomMock,
   issuesMock,
   openIssuesMock,
