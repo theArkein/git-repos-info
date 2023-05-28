@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { configedStyled } from "../../../config"
+import { configedStyled, urls } from "../../../config"
 import { Filters } from "./components/filters"
 import { DetailsLists, } from "./components/details-list"
 import { useAtom } from "jotai"
@@ -31,7 +31,23 @@ const Container = configedStyled("div",{
     }
 })
 
-const Logo = configedStyled("div")
+const Logo = configedStyled("div",{
+  textAlign: "center",
+  paddingTop: "20px",
+  "& a": {
+    display: "inline-block",
+    background: "$secondary12",
+    height: "32px",
+    width: "32px",
+    color: "$primary1",
+    textAlign: "center",
+    fontSize: "16px",
+    lineHeight:"32px",
+    fontWeight: "bolder",
+    borderRadius: "99px",
+    textDecoration: "none"
+  }
+})
 
 const fetchIssues = async (
   query: string,
@@ -66,7 +82,9 @@ export const IssuesPage = ()=>{
 
   return (
     <Container>
-      <Logo css={{gridArea:"avatar"}} />
+      <Logo css={{gridArea:"avatar"}} >
+        <a target="_blank" href={`${urls.githubOrigin}/theArkein/git-repos-info`}>A</a>
+      </Logo>
       <Filters css={{gridArea:"filters"}}/>
       <StatusList css={{gridArea:"status"}} />
       <DetailsLists css={{gridArea:"list"}}/>
