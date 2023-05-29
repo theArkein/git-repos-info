@@ -1,13 +1,7 @@
-import { useQuery } from "@tanstack/react-query"
 import { configedStyled, urls } from "../../../config"
 import { Filters } from "./components/filters"
 import { DetailsLists, } from "./components/details-list"
-import { useAtom } from "jotai"
-import { useEffect } from "react"
 import { StatusList } from "./components/status-list"
-import { fetchAPI, getIssuesApiEndPoint, validateGithubUrl } from "../../../utils/index.utils"
-import { IssueType } from "./types"
-import { issuesQueryAtom, queryFilterAtom, statusFilterAtom } from "./store/index.store"
 import { useGetIssues } from "../../../hooks"
 
 const Container = configedStyled("div",{
