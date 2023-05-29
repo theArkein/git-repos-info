@@ -8,6 +8,7 @@ import { StatusList } from "./components/status-list"
 import { fetchAPI, getIssuesApiEndPoint, validateGithubUrl } from "../../../utils/index.utils"
 import { IssueType } from "./types"
 import { issuesQueryAtom, queryFilterAtom, statusFilterAtom } from "./store/index.store"
+import { useGetIssues } from "../../../hooks"
 
 const Container = configedStyled("div",{
     maxHeight: "75vh",
@@ -49,36 +50,8 @@ const Logo = configedStyled("div",{
   }
 })
 
-const fetchIssues = async (
-  query: string,
-  status: string
-) => {
-  const url = new URL(query)
-  const [, username, repo] = url.pathname.split("/")
-  const apiEndPoint = getIssuesApiEndPoint(username, repo, status)
-  return fetchAPI(apiEndPoint)
-}
-
 export const IssuesPage = ()=>{
-  const [query] = useAtom(queryFilterAtom)
-  const [status] = useAtom(statusFilterAtom)
-  const [,setIssuesQuery] = useAtom(issuesQueryAtom)
-
-  const {data, isError, isFetching, isLoading} = useQuery<IssueType[]>({
-    queryKey:['IssuesList', {query, status}], 
-    queryFn:()=>fetchIssues(query, status, ),
-    enabled: validateGithubUrl(query).isValid,
-    retry: 0,
-  })
-
-  useEffect(()=>{
-    setIssuesQuery({
-      data,
-      loading: isFetching && isLoading,
-      error: isError ? "No such github repository" : ''
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[data, isFetching, isLoading, isError])
+  useGetIssues()
 
   return (
     <Container>
